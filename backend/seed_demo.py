@@ -56,6 +56,8 @@ def seed_demo_data() -> None:
             db.add(teacher)
             db.flush()
 
+        # Ensure deterministic demo credentials on every run (important for local restarts).
+        teacher.password_hash = get_password_hash("Teacher123!")
         if not teacher.moodle_id:
             teacher.moodle_id = 9001
 
